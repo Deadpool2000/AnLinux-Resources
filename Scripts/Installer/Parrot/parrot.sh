@@ -44,8 +44,8 @@ unset LD_PRELOAD
 command="proot"
 command+=" --link2symlink"
 command+=" -0"
-command+=" -r $folder"
-if [ -n "\$(ls -A parrot-binds)" ]; then
+command+=" -r /data/data/com.termux/files/home/parrot-fs"
+if [ -n "\$(ls -A /data/data/com.termux/files/home/parrot-binds)" ]; then
     for f in parrot-binds/* ;do
       . \$f
     done
@@ -76,6 +76,7 @@ echo "fixing shebang of $bin"
 termux-fix-shebang $bin
 echo "making $bin executable"
 chmod +x $bin
+cp start-parrot.sh /data/data/com.termux/files/usr/bin/parrot
 echo "removing image for some space"
 rm $tarball
-echo "You can now launch Parrot Security OS with the ./${bin} script"
+echo "You can now launch Parrot Security OS by just typing 'parrot' from anywhere"
